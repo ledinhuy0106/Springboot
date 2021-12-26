@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Staff</title>
+</head>
+<body>
+<a href="/staffs/create-staff">Create new Staff.git</a>
+<form action="/staffs/find">
+    <label>
+        <input type="text" placeholder="Nhập Tên" name="name">
+    </label>
+    <button>Tìm</button>
+</form>
+<form action="/staffs/salary" method="post">
+    <button >Salary>1200</button>
+</form>
+<form action="/staffs/asc" method="post">
+    <button >Asc salary</button>
+</form>
+<h1>Staff</h1>
+<table border="1">
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Department</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="staff : ${staffs}">
+        <tr>
+            <td th:text="${staff.getId()}"></td>
+            <td th:text="${staff.getName()}"></td>
+            <td th:text="${staff.getSalary()}"></td>
+            <td th:text="${staff.getDepartments().getDepartment()}"></td>
+            <td><a th:href="@{/staffs/edit-staff/__${staff.getId()}__ }">Edit</a></td>
+            <td><a th:href="@{/staffs/delete-staff/__${staff.getId()}__ }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

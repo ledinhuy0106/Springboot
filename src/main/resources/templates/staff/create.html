@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Staff</title>
+</head>
+<body>
+<h1>Create Staff</h1>
+<p>
+    <a href="/staffs/find">Staff list</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/staffs/create-staff}" th:object="${staffs}" method="post">
+    <table>
+        <tr>
+            <td>Name</td>
+            <td><label>
+                <input type="text" th:field="*{name}"/>
+            </label></td>
+        </tr>
+        <tr>
+            <td>Salary</td>
+            <td><label>
+                <input type="number" th:field="*{salary}"/>
+            </label></td>
+        </tr>
+        <label>
+            <select name="departments">
+                <option th:each="de : ${departments}" th:value="${de.getId()}" th:text="${de.getDepartment()}"></option>
+            </select>
+        </label>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Create Staff"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
